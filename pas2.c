@@ -42,52 +42,52 @@ int t;
 
 void loadop()
 {
-FILE *fp;
-int t,i,valu;
-t=0;
-fp=fopen("opco.txt","r");
-do
-{
-fscanf(fp,"%s %s",labe,opr);
-valu=(int)strtol(opr, NULL, 16); 
-strcpy(optab[t].op,labe);
-optab[t].val=valu;t++;
-//printf("\n%s  %d",optab[t-1].op,optab[t-1].val);
-}while(!feof(fp));
-opcount=t;
+	FILE *fp;
+	int t,i,valu;
+	t=0;
+	fp=fopen("opco.txt","r");
+	do
+	{
+		fscanf(fp,"%s %s",labe,opr);
+		valu=(int)strtol(opr, NULL, 16); 
+		strcpy(optab[t].op,labe);
+		optab[t].val=valu;t++;
+		//printf("\n%s  %d",optab[t-1].op,optab[t-1].val);
+	}while(!feof(fp));
+	opcount=t;
 }
 
 void readsym()
-{int i;
-int t,valu;
-FILE *fp=fopen("symtab.txt","r");
-t=0;
-do
 {
-fscanf(fp,"%s %s",labe,opr);
-valu = (int)strtol(opr, NULL, 16); 
-
-strcpy(symtab[t].sym,labe);
-symtab[t].val=valu;t++;
-//printf("\n%s  %x",symtab[t-1].sym,symtab[t-1].val);
-}while(!feof(fp));
-symcount=t;
+	int i;
+	int t,valu;
+	FILE *fp=fopen("symtab.txt","r");
+	t=0;
+	do
+	{
+		fscanf(fp,"%s %s",labe,opr);
+		valu = (int)strtol(opr, NULL, 16); 
+		strcpy(symtab[t].sym,labe);
+		symtab[t].val=valu;t++;
+		//printf("\n%s  %x",symtab[t-1].sym,symtab[t-1].val);
+	}while(!feof(fp));
+	symcount=t;
 }
 
 int searc(char a[])
 {
-for(int i=0;i<opcount;i++)
-if(!strcmp(optab[i].op,a))
-	return(optab[i].val);
-return(-1);
+	for(int i=0;i<opcount;i++)
+	if(!strcmp(optab[i].op,a))
+		return(optab[i].val);
+	return(-1);
 }
 int searsym(char a[])
 {
-for(int i=0;i<symcount;i++)
-if(!strcmp(symtab[i].sym,a))
-	return(symtab[i].val);
+	for(int i=0;i<symcount;i++)
+	if(!strcmp(symtab[i].sym,a))
+		return(symtab[i].val);
 
-return(0);
+	return(0);
 }
 FILE *opj;
 
